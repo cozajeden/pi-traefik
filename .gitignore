@@ -1,0 +1,41 @@
+# ============================================================
+# SECRETS — never commit these.
+# Every file here is a live credential. If one is ever pushed,
+# treat it as compromised and rotate it immediately.
+# ============================================================
+
+# Cloudflare API token (Zone:DNS:Edit) — used for the ACME DNS-01 challenge
+cf_dns_api_token
+
+# Cloudflare Origin Certificate + private key
+cf_origin_cert
+cf_origin_key
+
+# Cloudflare Tunnel token — grants tunnel access to your account
+cloudflare_tunnel_token
+
+# Traefik dashboard basic-auth (htpasswd hash)
+traefik_users
+
+# Local settings (dashboard hostname)
+.env
+
+# Certificate/ACME backups (contain private keys)
+backup/
+*.pem
+*.key
+acme.json*
+
+# Archived files kept locally for reference
+unused/
+
+# ============================================================
+# Editor / OS noise
+# ============================================================
+*.bak
+*.swp
+*~
+.DS_Store
+
+# Claude Code machine-local settings
+.claude/settings.local.json

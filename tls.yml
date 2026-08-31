@@ -1,0 +1,24 @@
+# tls.yml - Traefik file provider
+#
+# Deliberately NO stores.default.defaultCertificate.
+# The Cloudflare Origin cert's SANs (ryszard-napierala.dev,
+# *.ryszard-napierala.dev) are exactly the domains the ACME resolver requests,
+# so setting it makes Traefik log "No ACME certificate generation required"
+# and skip Let's Encrypt entirely. The two are mutually exclusive.
+#
+# Origin cert kept for rollback:
+#   - docker secrets cf_origin_cert / cf_origin_key
+#   - ./backup/origin*.pem.<timestamp>
+#   - traefik_certs volume (/certs in the container)
+
+tls:
+  options:
+    default:
+      minVersion: VersionTLS12
+      cipherSuites:
+        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
